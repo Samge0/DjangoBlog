@@ -28,10 +28,10 @@ class Command(BaseCommand):
             email='test@test.com', username='测试用户', password='test!q@w#eTYU')[0]
 
         pcategory = Category.objects.get_or_create(
-            name='我是父类目', parent_category=None)[0]
+            name='编程', parent_category=None)[0]
 
         category = Category.objects.get_or_create(
-            name='子类目', parent_category=pcategory)[0]
+            name='python', parent_category=pcategory)[0]
 
         category.save()
         basetag = Tag()
@@ -40,11 +40,11 @@ class Command(BaseCommand):
         for i in range(1, 20):
             article = Article.objects.get_or_create(
                 category=category,
-                title='nice title ' + str(i),
-                body='nice content ' + str(i),
+                title='Python3基础知识 ' + str(i),
+                body= "线程在执行过程中与进程还是有区别的。每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。每个线程都有他自己的一组CPU寄存器，称为线程的上下文，该上下文反映了线程上次运行该线程的CPU寄存器的状态。" + str(i),
                 author=user)[0]
             tag = Tag()
-            tag.name = "标签" + str(i)
+            tag.name = "python" + str(i)
             tag.save()
             article.tags.add(tag)
             article.tags.add(basetag)
